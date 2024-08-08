@@ -1,0 +1,6 @@
+[submodule "eigensdk-js"]
+	path = eigensdk-js
+	url = https://github.com/zellular-xyz/eigensdk-js
+[submodule "contract/eigensdk-js"]
+	path = contract/eigensdk-js
+	url = https://github.com/zellular-xyz/eigensdk-js
