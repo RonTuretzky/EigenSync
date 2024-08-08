@@ -1,0 +1,1 @@
+# aggragates signutares from all active nodes about events and sends them to the mirrored contracts
