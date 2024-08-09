@@ -1,0 +1,38 @@
+from web3 import Web3
+
+from aggregator.local_setting import INFURA_KEY, CHAIN_ID, ACCOUNT_ADDRESS
+from operators.setting import (
+    SIMPLE_EIGEN_ADDRESS,
+    SIMPLE_EIGEN_ABI,
+)
+from utils import (
+    add_operators_dao,
+)
+
+sepolia_w3 = Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}"))
+holesky_w3 = Web3(Web3.HTTPProvider(f"https://holesky.infura.io/v3/{INFURA_KEY}"))
+eigen_contract = sepolia_w3.eth.contract(
+    address=SIMPLE_EIGEN_ADDRESS, abi=SIMPLE_EIGEN_ABI
+)
+
+op = {
+    "opAddress": ACCOUNT_ADDRESS,
+    "socket": "http://127.0.0.1:8000",
+    "stakedAmount": int(1e22),
+    "pubG1": (
+        17806875660047621512516869047529183501421716164139394544527741020402883320044,
+        16640434601248027347022663893169604884458283818906030751003144650091891145634,
+    ),
+    "pubG2": (
+        (
+            21710989269701168717364201188928536558328726596573673652164890222556925046179,
+            17987449246335760478770682893531438420098970336611037234875326228531824723244,
+        ),
+        (
+            12293383678870397185170691036839395283119661172328459276025075848109309320528,
+            14169453464870499030908920078056339228460183936894566741999040791481675572481,
+        ),
+    ),
+}
+
+add_operators_dao(sepolia_w3, ACCOUNT_ADDRESS, op, CHAIN_ID)

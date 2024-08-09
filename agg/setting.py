@@ -12,7 +12,7 @@ SUBGRAPH_URL = (
     "https://api.studio.thegraph.com/query/85556/bls_apk_registry/version/latest"
 )
 
-SIMPLE_EIGEN_ABI = load_abi_from_file("ABIs/simple_eigen_abi.json")
+SIMPLE_EIGEN_ABI = load_abi_from_file("../ABIs/simple_eigen_abi.json")
 
 GAS = 4000000
 

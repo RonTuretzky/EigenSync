@@ -4,8 +4,8 @@ from pydantic import BaseModel
 from eigensdk.crypto.bls.attestation import g1_to_tupple
 from web3 import Web3
 
-from settings.local_setting import INFURA_KEY, KEY_PAIR, PORT
-from settings.setting import SIMPLE_EIGEN_ADDRESS, SIMPLE_EIGEN_ABI, Action
+from local_setting import INFURA_KEY, KEY_PAIR, PORT
+from setting import SIMPLE_EIGEN_ADDRESS, SIMPLE_EIGEN_ABI, Action
 from utils import query_subgraph
 
 app = FastAPI()

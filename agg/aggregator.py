@@ -9,12 +9,12 @@ from eigensdk.crypto.bls.attestation import (
 )
 from web3 import Web3
 
-from settings.local_setting import (
+from local_setting import (
     INFURA_KEY,
     CHAIN_ID,
     ACCOUNT_ADDRESS,
 )
-from settings.setting import (
+from setting import (
     SIMPLE_EIGEN_ADDRESS,
     SIMPLE_EIGEN_ABI,
     AGGREGATOR_DELAY,

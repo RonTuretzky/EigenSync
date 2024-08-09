@@ -2,8 +2,8 @@ import time
 
 import requests
 
-from settings.local_setting import PRIVATE_KEY
-from settings.setting import SIMPLE_EIGEN_ADDRESS, SIMPLE_EIGEN_ABI, GAS, SUBGRAPH_URL
+from local_setting import PRIVATE_KEY
+from setting import SIMPLE_EIGEN_ADDRESS, SIMPLE_EIGEN_ABI, GAS, SUBGRAPH_URL
 
 
 def query_subgraph(number: int, number_gte: int):
