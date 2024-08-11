@@ -5,7 +5,7 @@ from eigensdk.crypto.bls.attestation import g1_to_tupple
 from web3 import Web3
 
 from local_setting import INFURA_KEY, KEY_PAIR, PORT
-from setting import SIMPLE_EIGEN_ADDRESS, SIMPLE_EIGEN_ABI, Action
+from setting import OPERATOR_REGISTRY_ADDRESS, OPERATOR_REGISTRY_ABI, Action
 from utils import query_subgraph
 
 app = FastAPI()
@@ -29,7 +29,7 @@ def main_loop():
     sepolia_w3 = Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}"))
     holesky_w3 = Web3(Web3.HTTPProvider(f"https://holesky.infura.io/v3/{INFURA_KEY}"))
     eigen_contract = sepolia_w3.eth.contract(
-        address=SIMPLE_EIGEN_ADDRESS, abi=SIMPLE_EIGEN_ABI
+        address=OPERATOR_REGISTRY_ADDRESS, abi=OPERATOR_REGISTRY_ABI
     )
 
     last_signature_nonce = eigen_contract.functions.lastNonce().call()

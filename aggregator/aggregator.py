@@ -15,8 +15,8 @@ from local_setting import (
     ACCOUNT_ADDRESS,
 )
 from setting import (
-    SIMPLE_EIGEN_ADDRESS,
-    SIMPLE_EIGEN_ABI,
+    OPERATOR_REGISTRY_ADDRESS,
+    OPERATOR_REGISTRY_ABI,
     AGGREGATOR_DELAY,
 )
 from utils import (
@@ -28,7 +28,7 @@ from utils import (
 sepolia_w3 = Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}"))
 holesky_w3 = Web3(Web3.HTTPProvider(f"https://holesky.infura.io/v3/{INFURA_KEY}"))
 eigen_contract = sepolia_w3.eth.contract(
-    address=SIMPLE_EIGEN_ADDRESS, abi=SIMPLE_EIGEN_ABI
+    address=OPERATOR_REGISTRY_ADDRESS, abi=OPERATOR_REGISTRY_ABI
 )
 
 last_signature_nonce = eigen_contract.functions.lastNonce().call()

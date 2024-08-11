@@ -1,9 +1,9 @@
 from web3 import Web3
 
-from aggregator.local_setting import INFURA_KEY, CHAIN_ID, ACCOUNT_ADDRESS
-from operators.setting import (
-    SIMPLE_EIGEN_ADDRESS,
-    SIMPLE_EIGEN_ABI,
+from local_setting import INFURA_KEY, CHAIN_ID, ACCOUNT_ADDRESS
+from setting import (
+    OPERATOR_REGISTRY_ADDRESS,
+    OPERATOR_REGISTRY_ABI,
 )
 from utils import (
     add_operators_dao,
@@ -12,7 +12,7 @@ from utils import (
 sepolia_w3 = Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}"))
 holesky_w3 = Web3(Web3.HTTPProvider(f"https://holesky.infura.io/v3/{INFURA_KEY}"))
 eigen_contract = sepolia_w3.eth.contract(
-    address=SIMPLE_EIGEN_ADDRESS, abi=SIMPLE_EIGEN_ABI
+    address=OPERATOR_REGISTRY_ADDRESS, abi=OPERATOR_REGISTRY_ABI
 )
 
 op = {
