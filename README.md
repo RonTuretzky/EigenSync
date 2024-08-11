@@ -42,6 +42,17 @@ If the verification fails, you can try the following command:
 $ npx hardhat verify <CONTRACT_ADDRESS> --network <NETWORK_NAME> --force
 ```
 
+###### Deployment operator registry contract on different chains:
+
+| Network  | Deployment Address                              |
+|----------|-------------------------------------------------|
+| Sepolia  | `0xB3efEc7Fe6b7ae0CDe3abFC46AaBD527F95D390C`    |
+| Base     | `0xC62aB311db6B819d05dE464eB338836595f99C8d`    |
+| Optimism | `0x01b028f1BF8FC6915D53F762C6Ff905e4AAE6877`    |
+| Celo     | `0xf9937cf6EeDA0628b04B9782693D942D58fac165`    |
+| Frax     | `0x01b028f1BF8FC6915D53F762C6Ff905e4AAE6877`    |
+
+
 ---
 
 ### Synchronizer Service
