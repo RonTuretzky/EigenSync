@@ -55,7 +55,7 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
     /// @inheritdoc ISimpleEigenContract
     function initialize(address admin_) public override initializer {
         aggregatedG1 = BN254.G1Point(uint256(0), uint256(0));
-        setAggregatedG1History(aggregatedG1, 0, 0);
+        _setAggregatedG1History(aggregatedG1, 0, 0);
         totalStaked = 0;
         activeOperators = 0;
         minStakedRatio = 660000; // 66%
@@ -173,13 +173,6 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
     }
 
     /// @inheritdoc ISimpleEigenContract
-    function setAggregatedG1History(BN254.G1Point memory point_, uint256 value_, uint256 totalStakedAmount_) public override {
-        bytes32 key = keccak256(abi.encode(point_));
-        aggregatedG1History[key] = value_;
-        totalStakedHistoryHistory[key] = totalStakedAmount_;
-    }
-
-    /// @inheritdoc ISimpleEigenContract
     function getAggregatedG1History(BN254.G1Point memory point_) public view override returns (uint256, uint256) {
         bytes32 key = keccak256(abi.encode(point_));
         return (aggregatedG1History[key], totalStakedHistoryHistory[key]);
@@ -260,6 +253,15 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
     /*******************************************************************************
                             INTERNAL FUNCTIONS
     *******************************************************************************/
+    /// @notice Sets the aggregated history for a G1 point
+    /// @param point_ The BN254.G1Point to set the history for
+    /// @param value_ The uint256 value to associate with the point
+    /// @param totalStakedAmount_ The total staked amount at the time of setting the history
+    function _setAggregatedG1History(BN254.G1Point memory point_, uint256 value_, uint256 totalStakedAmount_) internal {
+        bytes32 key = keccak256(abi.encode(point_));
+        aggregatedG1History[key] = value_;
+        totalStakedHistoryHistory[key] = totalStakedAmount_;
+    }
 
     /// @notice Verifies a BLS aggregate signature and the veracity of a calculated G1 Public key
     /// @param msgHash_ Hash of the message
@@ -294,10 +296,10 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
         operatorInfos[lastIndex] = Operator(op_.opAddress, op_.socket, op_.stakedAmount, op_.pubG1, op_.pubG2);
         address2Index[op_.opAddress] = lastIndex;
         index2address[lastIndex] = op_.opAddress;
-        setAggregatedG1History(aggregatedG1, block.timestamp, totalStaked);
+        _setAggregatedG1History(aggregatedG1, block.timestamp, totalStaked);
         aggregatedG1 = aggregatedG1.plus(op_.pubG1);
         totalStaked += op_.stakedAmount;
-        setAggregatedG1History(aggregatedG1, 0, totalStaked);
+        _setAggregatedG1History(aggregatedG1, 0, totalStaked);
         activeOperators = activeOperators + 1;
         emit OperatorAdded(lastIndex, op_.opAddress, op_.socket, op_.stakedAmount, op_.pubG1, op_.pubG2);
     }
@@ -309,10 +311,10 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
         if (index == 0) {
             revert OperatorNotExisted();
         }
-        setAggregatedG1History(aggregatedG1, block.timestamp, totalStaked);
+        _setAggregatedG1History(aggregatedG1, block.timestamp, totalStaked);
         aggregatedG1 = aggregatedG1.plus(operatorInfos[index].pubG1.negate());
         totalStaked -= operatorInfos[index].stakedAmount;
-        setAggregatedG1History(aggregatedG1, 0, totalStaked);
+        _setAggregatedG1History(aggregatedG1, 0, totalStaked);
         delete address2Index[opAddress_];
         delete operatorInfos[index];
         delete index2address[index];
@@ -327,13 +329,13 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
         if (index == 0) {
             revert OperatorNotExisted();
         }
-        setAggregatedG1History(aggregatedG1, block.timestamp, totalStaked);
+        _setAggregatedG1History(aggregatedG1, block.timestamp, totalStaked);
         aggregatedG1 = aggregatedG1.plus(operatorInfos[index].pubG1.negate());
         totalStaked -= operatorInfos[index].stakedAmount;
         operatorInfos[index] = op_;
         aggregatedG1 = aggregatedG1.plus(op_.pubG1);
         totalStaked += op_.stakedAmount;
-        setAggregatedG1History(aggregatedG1, 0, totalStaked);
+        _setAggregatedG1History(aggregatedG1, 0, totalStaked);
         emit OperatorUpdated(index, op_.opAddress, op_.socket, op_.stakedAmount, op_.pubG1, op_.pubG2);
     }
 }
