@@ -1,3 +1,4 @@
+[![Hardhat Tests](https://github.com/zellular-xyz/EigenSync/actions/workflows/hardhat-tests.yml/badge.svg)](https://github.com/zellular-xyz/EigenSync/actions/workflows/hardhat-tests.yml)
 # EigenSync
 
 EigenSync enables the verification of aggregated BLS signatures by EigenLayer operators on any EVM-compatible chain by mirroring their keys and stakes. This allows developers to grant contract ownership on these chains to EigenLayer operators, a feature previously restricted to the mainnet.
