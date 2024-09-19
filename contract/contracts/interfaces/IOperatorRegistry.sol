@@ -7,12 +7,13 @@ import {BN254} from "../libraries/BN254.sol";
 /// @title ISimpleEigenContract
 /// @notice Interface for the SimpleEigenContract
 /// @dev Defines the external functions and events for managing operators with BLS signatures
-interface ISimpleEigenContract {
+interface IOperatorRegistry{
     /// @notice Enum representing different actions for operators
     enum Action {
         Add,
         Delete,
-        Update
+        Update,
+        Upsert
     }
 
     /// @notice Struct representing an operator's information
@@ -109,7 +110,7 @@ interface ISimpleEigenContract {
     ) external;
 
     /// @notice Update an existing operator using Signature
-    /// @param op_ The Operator to be added
+    /// @param op_ The Operator to be update
     /// @param signature_ Signature to update an operator
     /// @param nonce_ The nonce used for updating operator
     function updateOperatorSig(

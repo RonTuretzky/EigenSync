@@ -4,6 +4,9 @@ EigenSync enables the verification of aggregated BLS signatures by EigenLayer op
 
 For an in-depth understanding of EigenSync's architecture, visit our [Wiki](https://github.com/Inspector-Butters/EigenSync/wiki).
 
+> [!CAUTION]
+> This library is a PoC implemented for the EigenLayer hackathon. Do not use it in Production, testnet only.
+
 ## Main Components
 
 The EigenSync comprises two main components:
@@ -52,7 +55,6 @@ $ npx hardhat verify <CONTRACT_ADDRESS> --network <NETWORK_NAME> --force
 | Celo     | `0xf9937cf6EeDA0628b04B9782693D942D58fac165`    |
 | Frax     | `0x01b028f1BF8FC6915D53F762C6Ff905e4AAE6877`    |
 | Metal L2 | `0x01b028f1BF8FC6915D53F762C6Ff905e4AAE6877`    |
-
 
 ---
 

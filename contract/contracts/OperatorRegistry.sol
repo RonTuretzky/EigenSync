@@ -3,12 +3,12 @@ pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import {BN254} from "./libraries/BN254.sol";
-import "./interfaces/ISimpleEigenContract.sol";
+import "./interfaces/IOperatorRegistry.sol";
 
 /// @title SimpleEigenContract
 /// @notice A contract for managing operators with BLS signatures
 /// @dev Inherits from AccessControlUpgradeable for role-based access control
-contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
+contract OperatorRegistry is IOperatorRegistry, AccessControlUpgradeable {
     using BN254 for BN254.G1Point;
 
     // Roles
@@ -46,13 +46,13 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
 
     /// @notice Mapping to store aggregated history for G1 points
     /// @dev The key is a bytes32 hash of the G1Point, and the value is a uint256
-    mapping(bytes32 => uint256) public totalStakedHistoryHistory;
+    mapping(bytes32 => uint256) public totalStakedHistory;
 
     /*******************************************************************************
                                 PUBLIC FUNCTIONS
     *******************************************************************************/
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function initialize(address admin_) public override initializer {
         aggregatedG1 = BN254.G1Point(uint256(0), uint256(0));
         _setAggregatedG1History(aggregatedG1, 0, 0);
@@ -63,26 +63,26 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
         _grantRole(DEFAULT_ADMIN_ROLE, admin_);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function addOperatorDAO(
         Operator calldata op_
     ) public override onlyRole(DAO_ROLE) {
         _addOperator(op_);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function deleteOperatorDAO(address opAddress_) public override onlyRole(DAO_ROLE) {
         _deleteOperator(opAddress_);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function updateOperatorDAO(
         Operator calldata op_
     ) public override onlyRole(DAO_ROLE) {
         _updateOperator(op_);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function addOperatorSig(
         Operator calldata op_,
         Signature memory signature_,
@@ -114,7 +114,7 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
         _addOperator(op_);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function deleteOperatorSig(
         address opAddress_,
         Signature memory signature_,
@@ -140,7 +140,7 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
         _deleteOperator(opAddress_);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function updateOperatorSig(
         Operator calldata op_,
         Signature memory signature_,
@@ -172,13 +172,13 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
         _updateOperator(op_);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function getAggregatedG1History(BN254.G1Point memory point_) public view override returns (uint256, uint256) {
         bytes32 key = keccak256(abi.encode(point_));
-        return (aggregatedG1History[key], totalStakedHistoryHistory[key]);
+        return (aggregatedG1History[key], totalStakedHistory[key]);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function verifySignature(
         bytes32 msgHash_,
         Signature memory signature_
@@ -211,7 +211,7 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
         return _trySignatureAndApkVerification(msgHash_, signature_.apkG1, signature_.apkG2, signature_.sigma);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function getOperators(uint32 from_, uint32 to_) external view override returns (Operator[] memory operators){
         if (to_ == 0){
             to_ = lastIndex;
@@ -238,13 +238,13 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
                              SETTER FUNCTIONS
     *******************************************************************************/
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function setValidityPeriods(uint256 apkValidityPeriod_) public override onlyRole(SET_VALIDITY_PERIOD_ROLE) {
         apkValidityPeriod = apkValidityPeriod_;
         emit ValidityPeriodsUpdated(apkValidityPeriod_);
     }
 
-    /// @inheritdoc ISimpleEigenContract
+    /// @inheritdoc IOperatorRegistry
     function setMinStakedRatio(uint256 minStakedRatio_) public override onlyRole(SET_STAKE_LIMIT_ROLE) {
         minStakedRatio = minStakedRatio_;
         emit MinStakedRatioUpdated(minStakedRatio_);
@@ -260,7 +260,7 @@ contract SimpleEigenContract is ISimpleEigenContract, AccessControlUpgradeable {
     function _setAggregatedG1History(BN254.G1Point memory point_, uint256 value_, uint256 totalStakedAmount_) internal {
         bytes32 key = keccak256(abi.encode(point_));
         aggregatedG1History[key] = value_;
-        totalStakedHistoryHistory[key] = totalStakedAmount_;
+        totalStakedHistory[key] = totalStakedAmount_;
     }
 
     /// @notice Verifies a BLS aggregate signature and the veracity of a calculated G1 Public key
