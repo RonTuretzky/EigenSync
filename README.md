@@ -25,7 +25,7 @@ The following section outlines how to run tests and deploy the contract.
 To test the contract, run the following commands:
 
 ```bash
-$ git clone https://github.com/Inspector-Butters/EigenSync.git
+$ git clone --recurse-submodules https://github.com/Inspector-Butters/EigenSync.git
 $ cd contract
 $ npm install
 $ npx hardhat test
