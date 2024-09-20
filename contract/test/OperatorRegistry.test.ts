@@ -11,7 +11,7 @@ import {
     Signature
 } from '../eigensdk-js/src/crypto/bls/attestation';
 import {g1PointToArgs, g2PointToArgs} from '../eigensdk-js/src/utils/helpers';
-import {BN254, ISimpleEigenContract} from '../typechain-types/contracts/OperatorRegistry';
+import {BN254, IOperatorRegistry} from '../typechain-types/contracts/OperatorRegistry';
 
 describe("OperatorRegistry", () => {
     let operatorRegistryContract: OperatorRegistry;
@@ -228,8 +228,8 @@ describe("OperatorRegistry", () => {
         let encodedPair2G2: BN254.G2PointStruct;
         let encodedPair3G2: BN254.G2PointStruct;
 
-        let op1: ISimpleEigenContract.OperatorStruct, op2: ISimpleEigenContract.OperatorStruct;
-        let nonce1: ISimpleEigenContract.SynchronizationNonceStruct;
+        let op1: IOperatorRegistry.OperatorStruct, op2: IOperatorRegistry.OperatorStruct;
+        let nonce1: IOperatorRegistry.SynchronizationNonceStruct;
 
         const Action = {ADD: 0, DELETE: 1, UPDATE: 2};
 
@@ -327,7 +327,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -417,7 +417,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -480,7 +480,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -543,7 +543,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -587,7 +587,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -653,7 +653,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -695,7 +695,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -759,7 +759,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -848,7 +848,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -911,7 +911,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -974,7 +974,7 @@ describe("OperatorRegistry", () => {
 
             expect(aggregatedSignature.verify(aggregatedPubG2, msgHash)).to.be.true;  // local verification
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1020,7 +1020,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1067,7 +1067,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(invalidSignature),
@@ -1123,7 +1123,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1).add(keyPair3.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1179,7 +1179,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1238,7 +1238,7 @@ describe("OperatorRegistry", () => {
             await ethers.provider.send("evm_increaseTime", [10 * 3600]);
             await ethers.provider.send("evm_mine");
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1294,7 +1294,7 @@ describe("OperatorRegistry", () => {
             await ethers.provider.send("evm_increaseTime", [10 * 3600]);
             await ethers.provider.send("evm_mine");
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1348,7 +1348,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2;
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1).add(keyPair3.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1395,7 +1395,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1451,7 +1451,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1).add(keyPair3.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1498,7 +1498,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1509,7 +1509,7 @@ describe("OperatorRegistry", () => {
                 signature
             )).to.be.revertedWithCustomError(operatorRegistryContract, "InvalidOperatorIndex");
 
-            const signature2: ISimpleEigenContract.SignatureStruct = {
+            const signature2: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1552,7 +1552,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1563,7 +1563,7 @@ describe("OperatorRegistry", () => {
                 signature
             )).to.be.revertedWithCustomError(operatorRegistryContract, "InvalidOperatorIndex");
 
-            const signature2: ISimpleEigenContract.SignatureStruct = {
+            const signature2: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1622,7 +1622,7 @@ describe("OperatorRegistry", () => {
             await ethers.provider.send("evm_increaseTime", [10 * 3600]);
             await ethers.provider.send("evm_mine");
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1683,7 +1683,7 @@ describe("OperatorRegistry", () => {
             await ethers.provider.send("evm_increaseTime", [10 * 3600]);
             await ethers.provider.send("evm_mine");
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1738,7 +1738,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2.add(keyPair2.pubG2);
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
@@ -1795,7 +1795,7 @@ describe("OperatorRegistry", () => {
             const aggregatedPubG2: G2Point = keyPair1.pubG2;
             const aggregatedPubG1: G1Point = keyPair1.pubG1.add(keyPair2.pubG1);
 
-            const signature: ISimpleEigenContract.SignatureStruct = {
+            const signature: IOperatorRegistry.SignatureStruct = {
                 apkG1: g1PointToArgs(aggregatedPubG1),
                 apkG2: g2PointToArgs(aggregatedPubG2),
                 sigma: g1PointToArgs(aggregatedSignature),
