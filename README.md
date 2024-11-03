@@ -29,6 +29,8 @@ To test the contract, run the following commands:
 $ git clone https://github.com/zellular-xyz/EigenSync
 $ cd contract
 $ npm install
+$ git submodule init 
+$ git submodule update eigensdk-js
 $ npx hardhat test
 ```
 
