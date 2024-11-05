@@ -5,7 +5,7 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import {BN254} from "./libraries/BN254.sol";
 import "./interfaces/IOperatorRegistry.sol";
 
-/// @title SimpleEigenContract
+/// @title OperatorRegistry
 /// @notice A contract for managing operators with BLS signatures
 /// @dev Inherits from AccessControlUpgradeable for role-based access control
 contract OperatorRegistry is IOperatorRegistry, AccessControlUpgradeable {

@@ -4,8 +4,8 @@ pragma solidity ^0.8.19;
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import {BN254} from "../libraries/BN254.sol";
 
-/// @title ISimpleEigenContract
-/// @notice Interface for the SimpleEigenContract
+/// @title IOperatorRegistry
+/// @notice Interface for the OperatorRegistry
 /// @dev Defines the external functions and events for managing operators with BLS signatures
 interface IOperatorRegistry{
     /// @notice Enum representing different actions for operators
