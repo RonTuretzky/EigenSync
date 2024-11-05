@@ -34,63 +34,67 @@ const config: HardhatUserConfig = {
     },
     networks: {
         localhost: {
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         forking: {
             url: "http://127.0.0.1:8545",
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         blast: {
             url: "https://rpc.blast.io",
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         fantom: {
             url: "https://rpc.ftm.tools",
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         fantom_test: {
             url: "https://rpc.testnet.fantom.network/",
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         sepolia: {
             url: `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         mainnet: {
             url: `https://ethereum.publicnode.com`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         bsc: {
             url: `https://bsc.rpc.blxrbdn.com`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         polygon: {
             url: `https://polygon-rpc.com/`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         arbitrum: {
             url: `https://arb1.arbitrum.io/rpc`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         avax: {
             url: `https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         kava: {
             url: `https://evm.kava.io`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         zkevm: {
             url: `https://zkevm-rpc.com`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         op: {
             url: `https://optimism.llamarpc.com	`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
         },
         base: {
             url: `https://base.llamarpc.com`,
-            accounts: [process.env.NEW_MAIN_DEPLOYER!],
+            accounts: [process.env.DEPLOYER_KEY!],
+        },
+        holesky: {
+            url: `https://holesky.gateway.tenderly.co`,
+            accounts: [process.env.DEPLOYER_KEY!],
         },
     },
     sourcify: {
@@ -102,9 +106,10 @@ const config: HardhatUserConfig = {
     },
     etherscan: {
         apiKey: {
-            polygon: process.env.POLYGON_API_KEY!,
-            blast: process.env.BLAST_API_KEY!,
-            sepolia: process.env.ETHERSCAN_API_KEY!
+            // polygon: process.env.POLYGON_API_KEY!,
+            // blast: process.env.BLAST_API_KEY!,
+            sepolia: process.env.ETHERSCAN_API_KEY!,
+            holesky: process.env.ETHERSCAN_API_KEY!,
         },
         customChains: [
             {
@@ -121,6 +126,14 @@ const config: HardhatUserConfig = {
                 urls: {
                     apiURL: "https://api-sepolia.etherscan.io/api",
                     browserURL: "https://sepolia.etherscan.io",
+                },
+            },
+            {
+                network: "holesky",
+                chainId: 17000,
+                urls: {
+                    apiURL: "https://api-holesky.etherscan.io/api",
+                    browserURL: "https://holesky.etherscan.io",
                 },
             },
         ],
