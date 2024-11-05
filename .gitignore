@@ -1,2 +1,5 @@
 aggregator/settings/local_settings.py
-aggregator/settings/local_setting.py
+contract/.openzeppelin
+operator/.env 
+operator/local_setting.py
+venv/
