@@ -24,12 +24,12 @@ async function main() {
 
     console.log(`Admin address: ${adminAddress}`);
 
-    const SimpleEigenContract = await ethers.getContractFactory("SimpleEigenContract");
-    const contract = await upgrades.deployProxy(SimpleEigenContract, [adminAddress], {
+    const OperatorRegistry = await ethers.getContractFactory("OperatorRegistry");
+    const contract = await upgrades.deployProxy(OperatorRegistry, [adminAddress], {
         initializer: "initialize",
     });
     await contract.waitForDeployment();
-    console.log("SimpleEigenContract deployed to:", await contract.getAddress());
+    console.log("OperatorRegistry deployed to:", await contract.getAddress());
     const DAO_ROLE = await contract.DAO_ROLE();
     await contract.grantRole(DAO_ROLE, deployer.address);
     await verifyContract(await contract.getAddress(), []);
